@@ -29,6 +29,14 @@
   color: #61dafb;
 }
 
+.logbox {
+  height: 300px;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

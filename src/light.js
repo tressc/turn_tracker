@@ -10,6 +10,7 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import Popover from '@material-ui/core/Popover';
 import SettingsIcon from '@material-ui/icons/Settings';
 import Paper from '@material-ui/core/Paper';
+import { useLogger } from './logger';
 
 const useStyles = makeStyles({
     lightSource: {
@@ -31,8 +32,13 @@ function Light({ id }) {
 
     const { removeItem } = useItems();
     const { round } = useRounds();
+    const { updateLogger } = useLogger();
 
     const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const handleLogEntry = () => {
+        updateLogger(`${carrier}'s ${type} went out`);
+    }
 
     useEffect(() => {
         if (didMountRef.current) {
@@ -53,6 +59,7 @@ function Light({ id }) {
     const handleDecrement = () => {
         if (turns === 1) {
             removeItem("lights", id)
+            handleLogEntry();
         } else {
             setTurns(turns - 1);
         }

@@ -8,6 +8,7 @@ import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
 import { ItemsProvider } from './items';
 import { RoundsProvider } from './rounds';
+import { LoggerProvider } from './logger';
 import LogBox from './logBox';
 
 
@@ -27,15 +28,17 @@ function App() {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <RoundsProvider>
-        <ItemsProvider>
-          <div className="App">
-            <LogBox />
-            <TheGrid type="lights"/>
-            <TheGrid type="spells"/>
-          </div>
-        </ItemsProvider>
-      </RoundsProvider>
+      <LoggerProvider>
+        <RoundsProvider>
+          <ItemsProvider>
+            <div className="App">
+              <LogBox />
+              <TheGrid type="lights" />
+              <TheGrid type="spells" />
+            </div>
+          </ItemsProvider>
+        </RoundsProvider>
+      </LoggerProvider>
     </ThemeProvider>
   );
 }
