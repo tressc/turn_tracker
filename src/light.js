@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useItems } from './items';
 import { useRounds } from './rounds';
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
@@ -12,23 +11,13 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import Paper from '@material-ui/core/Paper';
 import { useLogger } from './logger';
 
-const useStyles = makeStyles({
-    lightSource: {
-        width: '200px',
-    },
-    actions: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center'
-    }
-});
+
 
 function Light({ id }) {
     const [type, setType] = useState('torch')
     const [carrier, setCarrier] = useState('Anon')
     const [turns, setTurns] = useState(6)
     const didMountRef = useRef(false);
-    const classes = useStyles();
 
     const { removeItem } = useItems();
     const { round } = useRounds();
@@ -77,11 +66,8 @@ function Light({ id }) {
     return (
         <div>
 
-            <Paper className={classes.lightSource}>
+            <Paper className={"item"} onClick={handleOpen}>
                 {`${carrier}'s ${type}: ${turns}`}
-                <IconButton onClick={handleOpen} aria-label="delete" className={classes.margin} size="small">
-                    <SettingsIcon fontSize="inherit" />
-                </IconButton>
             </Paper>
             <Popover
                 id={popoverId}
@@ -97,12 +83,12 @@ function Light({ id }) {
                     horizontal: 'center',
                 }}
             >
-                <div className={classes.actions}>
+                <div className="actions">
                     <div>
-                        <IconButton onClick={handleDecrement} aria-label="delete" className={classes.margin} size="small">
+                        <IconButton onClick={handleDecrement} aria-label="delete" size="small">
                             <ArrowDownwardIcon fontSize="inherit" />
                         </IconButton>
-                        <IconButton onClick={handleIncrement} aria-label="delete" className={classes.margin} size="small">
+                        <IconButton onClick={handleIncrement} aria-label="delete" size="small">
                             <ArrowUpwardIcon fontSize="inherit" />
                         </IconButton>
                     </div>
@@ -111,7 +97,7 @@ function Light({ id }) {
                     }} label="Carrier" />
                     <TextField placeholder="torch" onChange={e => setType(e.target.value)} label="Type" />
                     <div>
-                        <IconButton onClick={() => removeItem("lights", id)} aria-label="delete" className={classes.margin} size="small">
+                        <IconButton onClick={() => removeItem("lights", id)} aria-label="delete" size="small">
                             <DeleteForeverIcon fontSize="inherit" />
                         </IconButton>
                     </div>

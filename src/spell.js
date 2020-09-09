@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useItems } from './items';
 import { useRounds } from './rounds';
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
@@ -13,24 +12,12 @@ import Paper from '@material-ui/core/Paper';
 import { useLogger } from './logger';
 
 
-const useStyles = makeStyles({
-    spell: {
-        width: '200px',
-    },
-    actions: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center'
-    }
-});
-
 function Spell({ id }) {
     const [type, setType] = useState('Sleep');
     const [caster, setCaster] = useState('Anon');
     const [targets, setTargets] = useState('Orc1, Orc2, Orc3');
     const [turns, setTurns] = useState(6);
     const didMountRef = useRef(false);
-    const classes = useStyles();
 
     const { removeItem } = useItems();
     const { round } = useRounds();
@@ -80,11 +67,8 @@ function Spell({ id }) {
 
     return (
         <div>
-            <Paper className={classes.spell}>
+            <Paper className="item" onClick={handleOpen}>
                 {`${caster}'s ${type} spell: ${turns}`}
-                <IconButton onClick={handleOpen} aria-label="delete" className={classes.margin} size="small">
-                    <SettingsIcon fontSize="inherit" />
-                </IconButton>
             </Paper>
             <Popover
                 id={popoverId}
@@ -100,12 +84,12 @@ function Spell({ id }) {
                     horizontal: 'center',
                 }}
             >
-                <div className={classes.actions}>
+                <div className="actions">
                     <div>
-                        <IconButton onClick={handleDecrement} aria-label="delete" className={classes.margin} size="small">
+                        <IconButton onClick={handleDecrement} aria-label="delete"  size="small">
                             <ArrowDownwardIcon fontSize="inherit" />
                         </IconButton>
-                        <IconButton onClick={handleIncrement} aria-label="delete" className={classes.margin} size="small">
+                        <IconButton onClick={handleIncrement} aria-label="delete"  size="small">
                             <ArrowUpwardIcon fontSize="inherit" />
                         </IconButton>
                     </div>
@@ -115,7 +99,7 @@ function Spell({ id }) {
                     <TextField placeholder="Sleep" onChange={e => setType(e.target.value)} label="Type" />
                     <TextField placeholder="Orc 1, Orc 2, Orc 3" onChange={e => setTargets(e.target.value)} label="Targets" />
                     <div>
-                        <IconButton onClick={() => removeItem("spell", id)} aria-label="delete" className={classes.margin} size="small">
+                        <IconButton onClick={() => removeItem("spell", id)} aria-label="delete"  size="small">
                             <DeleteForeverIcon fontSize="inherit" />
                         </IconButton>
                     </div>

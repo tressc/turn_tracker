@@ -29,6 +29,25 @@
   color: #61dafb;
 }
 
+.item {
+  min-width: 200px;
+  max-width: 200px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item:hover {
+  cursor: pointer;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .logbox {
   height: 300px;
   overflow-y: scroll;
