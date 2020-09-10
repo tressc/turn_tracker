@@ -18,9 +18,6 @@ const darkTheme = createMuiTheme({
     primary: {
       main: purple[300],
     },
-    secondary: {
-      main: green[500],
-    },
   },
 });
 

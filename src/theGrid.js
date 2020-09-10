@@ -8,11 +8,11 @@ function TheGrid({type}) {
 
     return (
         <div>
-            <Button onClick={() => addItem(type)}>add {type.slice(0, type.length - 1)}</Button>
-            <div style={{width: '80%', border: `3px solid ${type === 'lights' ? 'orange' : 'green'}`, margin: '20px', padding: '10px'}}>
+            <Button variant="outlined" color="secondary" onClick={() => addItem(type)}>add {type.slice(0, type.length - 1)}</Button>
+            <div className="grid">
                 <Grid container spacing={2}>
                 <Grid item xs={12}>
-                <Grid container justify="center" spacing={1}>
+                <Grid container spacing={1}>
                     {items[type].map((value) => (
                     <Grid key={value.id} item>
                         {value.item}

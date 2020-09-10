@@ -45,10 +45,14 @@ function Light({ id }) {
         setAnchorEl(null);
     };
 
+    const handleRemove = () => {
+        removeItem("lights", id)
+        handleLogEntry();
+    }
+
     const handleDecrement = () => {
         if (turns === 1) {
-            removeItem("lights", id)
-            handleLogEntry();
+            handleRemove()
         } else {
             setTurns(turns - 1);
         }
@@ -97,7 +101,7 @@ function Light({ id }) {
                     }} label="Carrier" />
                     <TextField placeholder="torch" onChange={e => setType(e.target.value)} label="Type" />
                     <div>
-                        <IconButton onClick={() => removeItem("lights", id)} aria-label="delete" size="small">
+                        <IconButton onClick={handleRemove} aria-label="delete" size="small">
                             <DeleteForeverIcon fontSize="inherit" />
                         </IconButton>
                     </div>

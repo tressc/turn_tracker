@@ -46,11 +46,14 @@ function Spell({ id }) {
         setAnchorEl(null);
     };
 
+    const handleRemove = () => {
+        removeItem("spells", id)
+        handleLogEntry();
+    }
+
     const handleDecrement = () => {
         if (turns === 1) {
-            removeItem("spells", id)
-            handleLogEntry();
-
+            handleRemove()
         } else {
             setTurns(turns - 1);
         }
@@ -99,7 +102,7 @@ function Spell({ id }) {
                     <TextField placeholder="Sleep" onChange={e => setType(e.target.value)} label="Type" />
                     <TextField placeholder="Orc 1, Orc 2, Orc 3" onChange={e => setTargets(e.target.value)} label="Targets" />
                     <div>
-                        <IconButton onClick={() => removeItem("spell", id)} aria-label="delete"  size="small">
+                        <IconButton onClick={handleRemove} aria-label="delete"  size="small">
                             <DeleteForeverIcon fontSize="inherit" />
                         </IconButton>
                     </div>
